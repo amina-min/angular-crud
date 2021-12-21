@@ -1,0 +1,65 @@
+<p>Student Form!</p>
+<form (ngSubmit)="isSave? saveStudent():updateStudent()">
+    <table>
+        <tr>
+            <td>Student Name</td>
+            <td><input type="text" [(ngModel)]="student.name" name="name" id="name" /></td>
+        </tr>
+        <tr>
+            <td>Contract</td>
+            <td><input type="text" [(ngModel)]="student.contract" name="contract" id="contract" /></td>
+        </tr>
+        <tr>
+            <td>Subject</td>
+            <td><input type="text" [(ngModel)]="student.subject" name="subject" id="subject" /></td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td><input type="text" [(ngModel)]="student.location" name="location" id="location" /></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>
+                <select name="address" id="address" [(ngModel)]="student.address">
+                    <option value="...">Select one</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Kumilla">Kumilla</option>
+                    <option value="Borishal">Borishal</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="{{isSave? 'Save':'Update'}}" />          
+        </tr>
+    </table>
+</form>
+
+<button (click)="toggleStudentList()">Show Student List</button>
+<table *ngIf="isShowTable" border="1" cellpadding="1" cellspacing="0" width=75%>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>CONTRACT</th>
+            <th>SUBJECT</th>
+            <th>LOCATION</th>
+            <th>ADDRESS</th>
+            <th>ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of Students; index as i;">
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.contract}}</td>
+            <td>{{student.subject}}</td>
+            <td>{{student.location}}</td>
+            <td>{{student.address}}</td>
+            <td>
+                <button (click)= "editStudent(student)">Edit</button>
+                <button (click)= "deleteStudent(student)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
